@@ -10,6 +10,8 @@ public interface GenericController<T> {
 
     public List<T> getAll(String entity);
 
+    public void updateRecord(String entity,Integer id,T updatedObj);
+
     public T getEmployeeById(String entity,Integer id);
 
     public T getEmployeeByName(String entity, String name);

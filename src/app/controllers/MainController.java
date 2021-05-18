@@ -32,17 +32,24 @@ public class MainController {
         developerList.add(new Developer(2,"Ahsan",28,"Java & Jquery","Full Stack Developer",false));
         developerList.add(new Developer(3,"Ali",28,"Android","Mobile App Developer",true));
 
-        controller.save("DEVELOPER",developerList);
+        controller.save("DEV",developerList);
 
-        List<? extends Employee> DATA = controller.getAll("DEVELOPER");
+        List<? extends Employee> DATA = controller.getAll("DEV");
 
-        HumanResources hr =  (HumanResources) controller.getEmployeeByName("HR","Asad");
+        HumanResources hr =  (HumanResources) controller.getEmployeeByName("HR","Amer");
+        Developer developer = (Developer) controller.getEmployeeById("DEV",1);
 
-        System.out.println(hr);
+        System.out.println("GET BY NAME : " + hr);
+        System.out.println("GET BY ID : " + developer);
 
-        //get Employees
+        //UPDATE RECORD
+        controller.updateRecord("DEV",1,new Developer(1,"Bashir",28,"Node Js","Backend Developer",false));
+
+        developer = (Developer) controller.getEmployeeById("DEV",1);
+
+        System.out.println("UPDATED DATA : " + developer);
+        //GET ALL DATA
 //        controller.displayData(DATA);
-
 
     }
 }

@@ -26,7 +26,6 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     }
 
     //TO SAVE THE DATA IN DATABASE
-
     @Override
     public void save(String entity, List<T> rows){
             InMemoryDB.DB.put(entity,rows);
@@ -55,9 +54,8 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     public T findByName(String entity,String name){
         return (T) InMemoryDB.DB.get(entity)
                 .stream()
-                .filter(x->((Employee) x).getName().equals(name))
+                .filter(x->((Employee) x).getName().equalsIgnoreCase(name))
                 .findFirst().orElse(null);
-
     }
 
 

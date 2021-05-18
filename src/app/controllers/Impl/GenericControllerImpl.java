@@ -26,6 +26,11 @@ public class GenericControllerImpl<T> implements GenericController<T> {
     }
 
     @Override
+    public void updateRecord(String entity,Integer id,T updatedObj){
+        service.update(entity,id,updatedObj);
+    }
+
+    @Override
     public void displayData(List<T> rows){
         service.displayData(rows);
     }

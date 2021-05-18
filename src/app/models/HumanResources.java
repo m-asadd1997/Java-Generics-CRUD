@@ -21,7 +21,7 @@ public class HumanResources extends Employee {
 
     @Override
     public String toString() {
-        return "HumanResources{" +
+        return "HumanResources = {" +
                 "id='" + getId() + '\''+
                 ", name='" + getName() + '\''+
                 ", age='" + getAge() + '\''+
