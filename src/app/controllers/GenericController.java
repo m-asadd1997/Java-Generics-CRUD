@@ -1,6 +1,8 @@
 package app.controllers;
 
+import app.models.Developer;
 import app.models.Employee;
+import app.models.HumanResources;
 
 import java.util.List;
 
@@ -17,5 +19,9 @@ public interface GenericController<T> {
     public T getEmployeeByName(String entity, String name);
 
     public void displayData(List<T> rows);
+
+    public void saveHRs(String entity, List<HumanResources> rows);
+
+    public void saveDevelopers(String entity, List<Developer> rows);
 
 }

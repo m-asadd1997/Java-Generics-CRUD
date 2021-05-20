@@ -1,5 +1,8 @@
 package app.services;
 
+import app.models.Developer;
+import app.models.HumanResources;
+
 import java.util.List;
 
 public interface GenericService<T>{
@@ -16,5 +19,8 @@ public interface GenericService<T>{
 
     public T findEmployeeByName(String entity,String Name);
 
+    public void saveHRs(String entity, List<HumanResources> rows);
+
+    public void saveDevelopers(String entity, List<Developer> rows);
 
 }

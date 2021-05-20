@@ -1,7 +1,9 @@
 package app.controllers.Impl;
 
 import app.controllers.GenericController;
+import app.models.Developer;
 import app.models.Employee;
+import app.models.HumanResources;
 import app.services.GenericService;
 import app.services.Impl.GenericServiceImpl;
 
@@ -44,6 +46,18 @@ public class GenericControllerImpl<T> implements GenericController<T> {
     public T getEmployeeByName(String entity,String name){
         return (T) service.findEmployeeByName(entity, name);
     }
+
+
+    @Override
+    public void saveHRs(String entity,List<HumanResources> rows){
+        service.saveHRs(entity, rows);
+    }
+
+    @Override
+    public void saveDevelopers(String entity, List<Developer> rows){
+        service.saveDevelopers(entity, rows);
+    }
+
 
 
 }

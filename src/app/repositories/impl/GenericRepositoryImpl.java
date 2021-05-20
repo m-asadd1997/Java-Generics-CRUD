@@ -7,12 +7,15 @@ import app.repositories.GenericRepository;
 import database.InMemoryDB;
 
 
+import java.lang.reflect.ParameterizedType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class GenericRepositoryImpl<T> implements GenericRepository<T> {
+
 
 
     //TO INITIALIZE NEW ENTITY IN DATABASE
@@ -35,6 +38,7 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
 
     @Override
     public List getAll(String entity){
+
         return InMemoryDB.DB.get(entity);
 
     }
@@ -44,7 +48,7 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     public T findById(String entity,Integer id){
         return (T) InMemoryDB.DB.get(entity)
                 .stream()
-                .filter(x->((Employee) x).getId() == id)
+                .filter(filterId(id))
                 .findFirst().orElse(null);
 
     }
@@ -54,9 +58,39 @@ public class GenericRepositoryImpl<T> implements GenericRepository<T> {
     public T findByName(String entity,String name){
         return (T) InMemoryDB.DB.get(entity)
                 .stream()
-                .filter(x->((Employee) x).getName().equalsIgnoreCase(name))
+                .filter(filterName(name))
                 .findFirst().orElse(null);
     }
+
+
+    public Predicate<Employee> filterName(String name){
+        return emp->emp.getName().equalsIgnoreCase(name);
+    }
+
+    public Predicate<Employee> filterId(Integer id){
+        return emp->emp.getId() == id;
+    }
+
+//    private String getGenericName()
+//    {
+//        return ((Class<T>) ((ParameterizedType) getClass()
+//                .getGenericSuperclass()).getActualTypeArguments()[0]).getTypeName();
+//    }
+//
+//    private String getEntityName(){
+//        String entityName = getGenericName();
+//        System.out.println("HELOOOOOO"+entityName);
+//        if(entityName.equals("HumanResources"))
+//        {
+//
+//            return "HR";
+//        }
+//        else if(entityName.equals("Developer")){
+//            return "DEV";
+//        }
+//
+//        return null;
+//    }
 
 
 }

@@ -2,11 +2,17 @@
 package app.services.Impl;
 
 import app.constants.Constants;
+import app.models.Developer;
+import app.models.Employee;
+import app.models.HumanResources;
 import app.repositories.GenericRepository;
+import app.repositories.impl.DeveloperRepositoryImpl;
 import app.repositories.impl.GenericRepositoryImpl;
+import app.repositories.impl.HumanResourcesRepositoryImpl;
 import app.services.GenericService;
 import database.InMemoryDB;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +20,8 @@ public class GenericServiceImpl<T> implements GenericService<T> {
 
     //PROVIDES ALL REPOSITORY METHODS
     GenericRepository repository = new GenericRepositoryImpl();
+    GenericRepository devRepo = new DeveloperRepositoryImpl();
+    GenericRepository hrRepo = new HumanResourcesRepositoryImpl();
 
    @Override
     public void save(String entity, List<T> rows){
@@ -81,5 +89,16 @@ public class GenericServiceImpl<T> implements GenericService<T> {
        });
        System.out.println();
    }
+
+
+   @Override
+   public void saveDevelopers(String entity, List<Developer> rows){
+       devRepo.save(entity,rows);
+   }
+
+   @Override
+    public void saveHRs(String entity, List<HumanResources> rows){
+        hrRepo.save(entity,rows);
+    }
 
 }
